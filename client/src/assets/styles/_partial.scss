@@ -1,0 +1,47 @@
+@import "./variables";
+
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+@mixin flex($dir, $pos) {
+  display: flex;
+  justify-content: center;
+  align-items: $pos;
+  flex-direction: $dir;
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin primary-btn {
+  background: $accent-color;
+  color: $text-color;
+  outline: none;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: weight(bold);
+  padding: 0.3rem 2.5rem;
+  text-transform: uppercase;
+  border: 1px solid $accent-color;
+  &:active,
+  &:focus,
+  &:hover {
+    background: #8b87df;
+    color: lighten($text-color, 100%);
+    border: 1px solid #fff;
+    outline: none;
+    box-shadow: none;
+  }
+  &[disabled] {
+    opacity: 0.9;
+  }
+  &[disabled]:hover {
+    background: $accent-color;
+    color: $text-color;
+    cursor: not-allowed;
+  }
+}

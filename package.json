@@ -1,0 +1,24 @@
+{
+  "name": "goldwin",
+  "version": "1.0.0",
+  "description": "Assignment from GoldWin",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Puskas",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricPuskas/auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EricPuskas/auth/issues"
+  },
+  "homepage": "https://github.com/EricPuskas/auth#readme"
+}

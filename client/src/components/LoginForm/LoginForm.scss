@@ -1,0 +1,68 @@
+@import "../../assets/styles/partial";
+@import "../../assets/styles/variables";
+
+.LoginForm-container {
+  width: 100%;
+  height: 100vh;
+  max-width: 100%;
+  color: $text-color;
+  @include flex(row, flex-start);
+  padding: 0 1rem;
+}
+
+.LoginForm {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 2rem;
+  background-color: $primary-color;
+  box-shadow: 0px 1px 4px 0px #261fa2;
+  form {
+    width: 100%;
+  }
+  input {
+    border-radius: 5px;
+  }
+  label {
+    text-align: start;
+    display: flex;
+    font-size: 1.1rem;
+  }
+  .btn-primary {
+    @include primary-btn;
+  }
+}
+
+.LoginForm-error {
+  color: $error-text-color;
+  font-size: 0.9rem;
+  box-shadow: inset 0 0 0 1px #e0b4b4, 0 0 0 0 transparent;
+  background-color: #f5d5d5;
+  border-radius: 5px;
+  padding: 0.25rem;
+  font-weight: weight(bold);
+  text-align: center;
+  margin-top: 0.85rem;
+}
+
+.LoginForm-register {
+  margin-top: 1rem;
+  a {
+    color: #fff;
+    &:hover {
+      text-decoration: none;
+      color: $accent-color;
+      text-shadow: 1px 1px 2px$text-color;
+    }
+  }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .LoginForm {
+    padding: 1rem;
+  }
+}
