@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { loginUser, clearErrors, handleTouch } from "../../actions/auth";
 import { Field, reduxForm } from "redux-form";
-import isSecure from "../../utils/isSecure";
+import { isSecure } from "../../utils";
 import Loader from "../Common/Loader/Loader";
 import NewField from "../Common/NewField/NewField";
 import "./LoginForm.scss";
@@ -14,11 +14,11 @@ const LoginForm = ({
   clearErrors,
   handleTouch,
   reset,
-  auth: { success, loading, failed, clean },
+  auth: { success, loading, failed },
   valid,
   errors: { error }
 }) => {
-  const onSubmit = data => {
+  const handleLogin = data => {
     loginUser(data);
     reset();
     clearErrors();
@@ -28,9 +28,9 @@ const LoginForm = ({
     handleTouch();
   }
   const form = (
-    <div className="LoginForm-container">
+    <div className="LoginForm-container" data-test="login-form">
       <div className="LoginForm">
-        <form onSubmit={handleSubmit(data => onSubmit(data))}>
+        <form onSubmit={handleSubmit(data => handleLogin(data))}>
           {failed && (
             <p className="LoginForm-error">
               {" "}

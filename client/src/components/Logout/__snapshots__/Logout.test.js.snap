@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders without crashing Should pass snapshot test 1`] = `"<button data-test=\\"logout-btn\\" class=\\"btn btn-primary\\">Logout</button>"`;

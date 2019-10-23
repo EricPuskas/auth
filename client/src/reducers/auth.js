@@ -6,7 +6,7 @@ import {
   LOGOUT,
   TOUCHED
 } from "../actions/types";
-import isEmpty from "../utils/isEmpty";
+import { isEmpty } from "../utils";
 
 const initState = {
   clean: true,
@@ -21,7 +21,21 @@ const initState = {
   }
 };
 
-export default function(state = initState, action) {
+export default function(
+  state = {
+    clean: true,
+    success: false,
+    failed: false,
+    loading: false,
+    user: {
+      userID: null,
+      firstName: null,
+      lastName: null,
+      isAuthenticated: false
+    }
+  },
+  action
+) {
   const { type, payload } = action;
   switch (type) {
     case LOGIN:

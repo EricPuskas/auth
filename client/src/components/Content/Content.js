@@ -6,7 +6,7 @@ import "./Content.scss";
 
 const Content = ({ logoutUser, auth: { success } }) => {
   return success ? (
-    <div className="Content">
+    <div className="Content" data-test="content">
       <h2> You have successfully logged in. </h2>
       <Logout logoutUser={logoutUser} />
     </div>
