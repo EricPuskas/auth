@@ -24,9 +24,7 @@ describe("Header Component", () => {
           lastName: null,
           isAuthenticated: false
         }
-      },
-      form: {},
-      errors: { error: "" }
+      }
     };
     let noAuthTest = setup(loggedOutState);
     const test = findByAttribute(noAuthTest, "header-no-auth");
@@ -51,9 +49,7 @@ describe("Header Component", () => {
           lastName: "Pollo",
           isAuthenticated: true
         }
-      },
-      form: {},
-      errors: { error: "" }
+      }
     };
     let AuthTest = setup(loggedInState);
     const test = findByAttribute(AuthTest, "header-auth");
