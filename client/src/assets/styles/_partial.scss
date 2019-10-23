@@ -11,12 +11,6 @@
   flex-direction: $dir;
 }
 
-@mixin mobile {
-  @media (max-width: $mobile) {
-    @content;
-  }
-}
-
 @mixin primary-btn {
   background: $accent-color;
   color: $text-color;

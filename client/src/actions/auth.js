@@ -6,34 +6,35 @@ import {
   GET_ERRORS,
   CLEAR_ERRORS,
   CLEAR_FORM,
+  TOUCHED,
   LOGOUT
 } from "./types";
 
-export const mockCall = data => async dispatch => {
-  // dispatch({
-  //   type: LOADING
-  // });
-  // const mockData = {
-  //   email: "john.doe@yahoo.com",
-  //   password: "Illbeback2019!"
-  // };
-  // const mockDb = {
-  //   userID: 12345,
-  //   firstName: "John",
-  //   lastName: "Doe"
-  // };
-  // if (data.email === mockData.email && data.password === mockData.password) {
-  //   setTimeout(() => {
-  //     dispatch({
-  //       type: LOGIN,
-  //       payload: mockDb
-  //     });
-  //   }, 300);
-  // } else {
-  //   dispatch({
-  //     type: FAILED
-  //   });
-  // }
+export const mockCall = data => dispatch => {
+  dispatch({
+    type: LOADING
+  });
+  const mockData = {
+    email: "john.doe@yahoo.com",
+    password: "Illbeback2019!"
+  };
+  const mockDb = {
+    userID: 12345,
+    firstName: "John",
+    lastName: "Doe"
+  };
+  if (data.email === mockData.email && data.password === mockData.password) {
+    setTimeout(() => {
+      dispatch({
+        type: LOGIN,
+        payload: mockDb
+      });
+    }, 300);
+  } else {
+    dispatch({
+      type: FAILED
+    });
+  }
 };
 
 export const loginUser = data => async dispatch => {
@@ -66,6 +67,12 @@ export const loginUser = data => async dispatch => {
 export const logoutUser = () => {
   return {
     type: LOGOUT
+  };
+};
+
+export const handleTouch = () => {
+  return {
+    type: TOUCHED
   };
 };
 

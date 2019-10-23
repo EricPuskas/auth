@@ -1,4 +1,11 @@
-import { LOADING, LOGIN, CLEAR_FORM, FAILED, LOGOUT } from "../actions/types";
+import {
+  LOADING,
+  LOGIN,
+  CLEAR_FORM,
+  FAILED,
+  LOGOUT,
+  TOUCHED
+} from "../actions/types";
 import isEmpty from "../utils/isEmpty";
 
 const initState = {
@@ -23,6 +30,7 @@ export default function(state = initState, action) {
         loading: false,
         isAuthenticated: !isEmpty(payload),
         success: !isEmpty(payload),
+        clean: true,
         failed: isEmpty(payload),
         user: payload
       };
@@ -45,6 +53,11 @@ export default function(state = initState, action) {
         ...state,
         failed: true,
         loading: false
+      };
+    case TOUCHED:
+      return {
+        ...state,
+        clean: false
       };
     default:
       return state;

@@ -1,51 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loginUser, clearErrors } from "../../actions/auth";
+import { loginUser, clearErrors, handleTouch } from "../../actions/auth";
 import { Field, reduxForm } from "redux-form";
 import isSecure from "../../utils/isSecure";
-import Spinner from "../../assets/img/rolling.svg";
+import Loader from "../Common/Loader/Loader";
+import NewField from "../Common/NewField/NewField";
 import "./LoginForm.scss";
-
-const Loader = () => {
-  return <img src={Spinner} alt="Loading..." style={{ maxWidth: "1.8rem" }} />;
-};
-
-const newField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  id,
-  meta: { touched, error },
-  icon
-}) => {
-  return (
-    <>
-      <div className="input-group mb-3">
-        <div className="input-group-prepend">
-          <span className="input-group-text">
-            <i className={icon} />
-          </span>
-        </div>
-        <input
-          {...input}
-          autoComplete="new-password"
-          className="form-control"
-          placeholder={placeholder}
-          aria-label={label}
-          type={type}
-          id={id}
-        />
-      </div>
-      {touched && error && <p className="LoginForm-error">{error}</p>}
-    </>
-  );
-};
 
 const LoginForm = ({
   handleSubmit,
+  anyTouched,
   loginUser,
   clearErrors,
+  handleTouch,
   reset,
   auth: { success, loading, failed, clean },
   valid,
@@ -57,10 +24,13 @@ const LoginForm = ({
     clearErrors();
   };
 
-  const loginForm = (
+  if (anyTouched) {
+    handleTouch();
+  }
+  const form = (
     <div className="LoginForm-container">
       <div className="LoginForm">
-        <form onSubmit={handleSubmit(val => onSubmit(val))}>
+        <form onSubmit={handleSubmit(data => onSubmit(data))}>
           {failed && (
             <p className="LoginForm-error">
               {" "}
@@ -75,7 +45,7 @@ const LoginForm = ({
               name="email"
               type="email"
               lable="email"
-              component={newField}
+              component={NewField}
               id="email"
               placeholder="Email"
               icon="fas fa-envelope"
@@ -87,7 +57,7 @@ const LoginForm = ({
               type="password"
               label="password"
               placeholder="Password"
-              component={newField}
+              component={NewField}
               icon="fas fa-lock"
               id="password"
             />
@@ -107,10 +77,10 @@ const LoginForm = ({
     </div>
   );
 
-  return success ? null : loginForm;
+  return success ? null : form;
 };
 
-const myValidator = data => {
+const Validator = data => {
   const errors = {};
   if (!data.password) {
     errors.password = "Password field is required.";
@@ -120,7 +90,6 @@ const myValidator = data => {
   if (!data.email) {
     errors.email = "Email field is required.";
   } else if (!/^[^@]+@[^@]+\.[^@]+$/.test(data.email)) {
-    // use a more robust RegEx in real-life scenarios
     errors.email = "Please enter a valid email address (example@email.com).";
   }
   return errors;
@@ -133,5 +102,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser, clearErrors }
-)(reduxForm({ form: "LoginForm", validate: myValidator })(LoginForm));
+  { loginUser, clearErrors, handleTouch }
+)(
+  reduxForm({
+    form: "LoginForm",
+    validate: Validator
+  })(LoginForm)
+);
