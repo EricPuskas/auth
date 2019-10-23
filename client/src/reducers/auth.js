@@ -42,11 +42,14 @@ export default function(
       return {
         ...state,
         loading: false,
-        isAuthenticated: !isEmpty(payload),
+
         success: !isEmpty(payload),
         clean: true,
         failed: isEmpty(payload),
-        user: payload
+        user: {
+          ...payload,
+          isAuthenticated: !isEmpty(payload)
+        }
       };
     case LOGOUT:
       return initState;

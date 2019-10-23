@@ -14,6 +14,7 @@ export const findByAttribute = (component, attr) =>
 
 export const checkProps = (component, expectedProps) => {
   return checkPropTypes(
+    // eslint-disable-next-line
     component.propTypes,
     expectedProps,
     "props",
