@@ -6,6 +6,7 @@ import RegisterForm from "./RegisterForm";
 import Logo from "../Logo/Logo";
 
 const Register = () => {
+  document.title = "GoldWin - Sign up";
   return (
     <>
       <Logo />

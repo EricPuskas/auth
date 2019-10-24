@@ -7,6 +7,7 @@ import LoginForm from "../LoginForm/LoginForm";
 import Logo from "../Logo/Logo";
 
 const Auth = () => {
+  document.title = "GoldWin - Login";
   return (
     <>
       <Logo />

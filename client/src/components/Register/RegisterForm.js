@@ -91,7 +91,7 @@ const RegisterForm = ({
             type="submit"
             disabled={loading || !valid}
           >
-            {loading ? <Loader /> : "Sign up!"}
+            {loading ? <Loader /> : "Register"}
           </button>
           <div className="LoginForm-register">
             <Link to="/"> Already a member? </Link>
