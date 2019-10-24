@@ -1,4 +1,4 @@
-# Instructions
+# Instructions (Development Mode Only)
 
 ## Installation
 
@@ -13,3 +13,8 @@
 ## Testing
 
 - `cd` into client and `npm test` to run the tests.
+
+## Notes
+
+- You can use one of the accounts from the mock database
+- You can also make another account but there is no real database attached, therefore the data is not persistent and created accounts will vanish after the back-end server is stopped.
