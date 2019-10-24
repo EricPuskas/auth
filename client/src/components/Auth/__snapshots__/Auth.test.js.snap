@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth Component Should pass snapshot test 1`] = `
+"<Fragment>
+  <Logo />
+  <Connect(Header) route=\\"login\\" />
+  <Connect(Content) />
+  <Connect(ReduxForm) />
+  <Footer />
+</Fragment>"
+`;
