@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loginUser, clearErrors, handleTouch } from "../../actions/auth";
+import { registerUser, clearErrors, handleTouch } from "../../actions/auth";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Validator from "../../utils/validator";
 import Loader from "../Common/Loader/Loader";
 import NewField from "../Common/NewField/NewField";
-import "./LoginForm.scss";
+import "../LoginForm/LoginForm.scss";
 
-const LoginForm = ({
+const RegisterForm = ({
+  history,
   handleSubmit,
   anyTouched,
-  loginUser,
+  registerUser,
   clearErrors,
   handleTouch,
   reset,
@@ -19,8 +20,8 @@ const LoginForm = ({
   valid,
   errors: { error }
 }) => {
-  const handleLogin = data => {
-    loginUser(data);
+  const handleRegister = data => {
+    registerUser(data, history);
     reset();
     clearErrors();
   };
@@ -31,16 +32,35 @@ const LoginForm = ({
   const form = (
     <div className="LoginForm-container" data-test="login-form">
       <div className="LoginForm">
-        <form onSubmit={handleSubmit(data => handleLogin(data))}>
+        <form onSubmit={handleSubmit(data => handleRegister(data))}>
           {failed && (
             <p className="LoginForm-error">
-              {" "}
-              API Call Failed. Please try again later.{" "}
+              API Call Failed. Please try again later.
             </p>
           )}
-          {error && !failed && (
-            <p className="LoginForm-error"> Invalid Credentials </p>
-          )}
+          {error && !failed && <p className="LoginForm-error"> {error} </p>}
+          <div className="form-group">
+            <Field
+              name="firstName"
+              type="text"
+              lable="First Name"
+              component={NewField}
+              id="firstName"
+              placeholder="First Name"
+              icon="far fa-circle"
+            />
+          </div>
+          <div className="form-group">
+            <Field
+              name="lastName"
+              type="text"
+              lable="Last Name"
+              component={NewField}
+              id="lastName"
+              placeholder="Last Name"
+              icon="far fa-circle"
+            />
+          </div>
           <div className="form-group">
             <Field
               name="email"
@@ -68,10 +88,10 @@ const LoginForm = ({
             type="submit"
             disabled={loading || !valid}
           >
-            {loading ? <Loader /> : "Login"}
+            {loading ? <Loader /> : "Sign up!"}
           </button>
           <div className="LoginForm-register">
-            <Link to="/register"> Don't have an account? </Link>
+            <Link to="/"> Already a member? </Link>
           </div>
         </form>
       </div>
@@ -88,10 +108,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser, clearErrors, handleTouch }
+  { registerUser, clearErrors, handleTouch }
 )(
   reduxForm({
-    form: "LoginForm",
-    validate: Validator.login
-  })(LoginForm)
+    form: "RegisterForm",
+    validate: Validator.register
+  })(withRouter(RegisterForm))
 );

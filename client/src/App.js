@@ -1,25 +1,24 @@
 import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Components
-import Header from "./components/Header/Header";
-import Content from "./components/Content/Content";
-import Footer from "./components/Footer/Footer";
-import LoginForm from "./components/LoginForm/LoginForm";
-import Logo from "./components/Logo/Logo";
+import Auth from "./components/Auth/Auth";
+import Register from "./components/Register/Register";
 
 import "./App.scss";
 
 const App = () => {
   return (
-    <div className="container-fluid">
-      <div className="wrapper">
-        <Logo />
-        <Header />
-        <Content />
-        <LoginForm />
-        <Footer />
+    <BrowserRouter>
+      <div className="container-fluid">
+        <div className="wrapper">
+          <Switch>
+            <Route exact path="/" component={Auth} />
+            <Route exact path="/register" component={Register} />
+          </Switch>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 

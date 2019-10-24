@@ -1,6 +1,7 @@
 import {
   LOADING,
   LOGIN,
+  REGISTER,
   CLEAR_FORM,
   FAILED,
   LOGOUT,
@@ -50,6 +51,11 @@ export default function(
           ...payload,
           isAuthenticated: !isEmpty(payload)
         }
+      };
+    case REGISTER:
+      return {
+        ...state,
+        loading: false
       };
     case LOGOUT:
       return initState;

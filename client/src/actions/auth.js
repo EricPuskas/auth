@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   LOGIN,
+  REGISTER,
   LOADING,
   FAILED,
   GET_ERRORS,
@@ -56,6 +57,30 @@ export const loginUser = data => async dispatch => {
       });
     } else if (error.response.status === 401) {
       dispatch({ type: CLEAR_FORM });
+      dispatch({
+        type: GET_ERRORS,
+        payload: error.response.data
+      });
+    }
+  }
+};
+
+export const registerUser = (data, history) => async dispatch => {
+  try {
+    dispatch({
+      type: LOADING
+    });
+    await axios.post("/api/auth/register", data);
+    dispatch({
+      type: REGISTER
+    });
+    history.push("/");
+  } catch (error) {
+    if (error.response.status === 500) {
+      dispatch({
+        type: FAILED
+      });
+    } else if (error.response.status === 401) {
       dispatch({
         type: GET_ERRORS,
         payload: error.response.data

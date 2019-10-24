@@ -27,4 +27,27 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+exports.registerUser = async (req, res) => {
+  try {
+    let newUser = {
+      userId: 123124,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password
+    };
+
+    let salt = await bcrypt.genSalt(10);
+    let hash = await bcrypt.hash(newUser.password, salt);
+    newUser.password = hash;
+
+    mockDB.push(newUser);
+    res.json(mockDB);
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ error: "Something went wrong. Please try again later!" });
+  }
+};
 module.exports = exports;

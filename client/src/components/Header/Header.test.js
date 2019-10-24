@@ -5,7 +5,7 @@ import Header from "./Header";
 
 const setup = (initState = {}) => {
   const store = testStore(initState);
-  return shallow(<Header store={store} />)
+  return shallow(<Header store={store} route="login" />)
     .childAt(0)
     .dive();
 };

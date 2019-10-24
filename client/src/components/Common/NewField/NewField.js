@@ -19,7 +19,7 @@ const NewField = ({
         </div>
         <input
           {...input}
-          autoComplete="new-password"
+          autoComplete={"new-password"}
           className="form-control"
           placeholder={placeholder}
           aria-label={label}

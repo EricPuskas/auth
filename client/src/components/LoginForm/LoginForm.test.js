@@ -7,6 +7,7 @@ import errorReducer from "../../reducers/errors";
 import { reducer as formReducer } from "redux-form";
 import { middleware } from "../../store";
 import LoginForm from "./LoginForm";
+import { BrowserRouter } from "react-router-dom";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -41,7 +42,12 @@ describe("Redux Form", () => {
     const handleSubmit = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
-        <LoginForm handleSubmit={handleSubmit} initialValues={initialValues} />
+        <BrowserRouter>
+          <LoginForm
+            handleSubmit={handleSubmit}
+            initialValues={initialValues}
+          />
+        </BrowserRouter>
       </Provider>
     );
 

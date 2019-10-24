@@ -8,7 +8,7 @@ const Logout = ({ logoutUser }) => {
       onClick={logoutUser}
       className="btn btn-primary"
     >
-      Logout
+      <i className="fas fa-sign-out-alt" /> Logout
     </button>
   );
 };
