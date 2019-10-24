@@ -14,6 +14,11 @@
 
 - `cd` into client and `npm test` to run the tests.
 
+### Test Coverage
+
+- `npm test -- --coverage --watchAll=false`
+- The flag `--watchALl=false` is required due to some issues with jest. [More on that here](https://github.com/facebook/create-react-app/issues/6888)
+
 ## Notes
 
 - You can use one of the accounts from the mock database
