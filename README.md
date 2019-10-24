@@ -17,8 +17,8 @@
 ### Test Coverage
 
 - `npm test -- --coverage`
-  .._ `npm test -- --coverage --watchAll=false` in case the test coverage comes up empty.
-  .._ The flag `--watchALl=false` is required due to some potential issues with jest. [More on that here](https://github.com/facebook/create-react-app/issues/6888)
+  - `npm test -- --coverage --watchAll=false` in case the test coverage comes up empty.
+  - The flag `--watchALl=false` is required due to some potential issues with jest. [More on that here](https://github.com/facebook/create-react-app/issues/6888)
 
 ## Notes
 
