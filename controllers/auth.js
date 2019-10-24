@@ -13,17 +13,17 @@ exports.loginUser = async (req, res) => {
             lastName: foundUser.lastName
           });
         } else {
-          return res.status(401).json({ error: "Invalid credentials" });
+          return res.status(401).json("Invalid credentials");
         }
       });
     } else {
-      return res.status(401).json({ error: "Invalid credentials" });
+      return res.status(401).json("Invalid credentials");
     }
   } catch (err) {
     console.log(err);
     return res
       .status(500)
-      .json({ error: "Something went wrong. Please try again later!" });
+      .json("Something went wrong. Please try again later!");
   }
 };
 
@@ -47,7 +47,7 @@ exports.registerUser = async (req, res) => {
     console.log(err);
     return res
       .status(500)
-      .json({ error: "Something went wrong. Please try again later!" });
+      .json("Something went wrong. Please try again later!");
   }
 };
 module.exports = exports;

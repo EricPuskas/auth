@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { registerUser, clearErrors, handleTouch } from "../../actions/auth";
 import { Field, reduxForm } from "redux-form";
@@ -20,6 +20,9 @@ const RegisterForm = ({
   valid,
   errors: { error }
 }) => {
+  useEffect(() => {
+    clearErrors();
+  }, [clearErrors]);
   const handleRegister = data => {
     registerUser(data, history);
     reset();
